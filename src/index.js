@@ -10,11 +10,9 @@ const App = async () => {
   console.log(`You are currently in ${navigation.readPath()}`);
   rl.setPrompt("\u001b[33m>>\u001b[0m ");
   rl.prompt();
-  const handlerClose = () => {
-    rl.close();
-  };
+
   rl.on("line", async (line) => {
-    if (await handlerCommandLine(line, handlerClose)) {
+    if (await handlerCommandLine(line, rl)) {
       console.log(`You are currently in ${navigation.readPath()}`);
       rl.prompt();
     }

@@ -12,24 +12,15 @@ class Navigation {
   }
   async cd(path) {
     try {
-      const pathNormolized = normalize(path);
-      if (isAbsolute(pathNormolized)) {
-        if (await this.#pathExists(pathNormolized)) {
-          this.currentPath = pathNormolized;
-        } else {
-          throw new Error();
-        }
+      const pathResult = this.convertToAbsolutePath(path);
+      if (await this.#pathExists(pathResult)) {
+        this.currentPath = pathResult;
       } else {
-        const absolutePath = join(this.currentPath, pathNormolized);
-        if (await this.#pathExists(absolutePath)) {
-          this.currentPath = absolutePath;
-        } else {
-          throw new Error();
-        }
+        throw new Error();
       }
       return this.currentPath;
     } catch {
-      consoleErrors.operation();
+      consoleErrors("operation");
     }
   }
   up() {
@@ -39,7 +30,7 @@ class Navigation {
       this.currentPath = dirname(this.currentPath);
       return this.currentPath;
     } catch {
-      consoleErrors.operation();
+      consoleErrors("operation");
     }
   }
   async ls() {
@@ -76,7 +67,7 @@ class Navigation {
         console.log("\u001b[32mThe folder is empty\u001b[0m");
       }
     } catch {
-      consoleErrors.operation();
+      consoleErrors("operation");
     }
   }
 
@@ -84,6 +75,13 @@ class Navigation {
     return await stat(path)
       .then(() => true)
       .catch(() => false);
+  }
+
+  convertToAbsolutePath(path) {
+    const pathNormolized = normalize(path);
+    return isAbsolute(pathNormolized)
+      ? pathNormolized
+      : join(this.currentPath, pathNormolized);
   }
 }
 
