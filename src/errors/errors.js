@@ -20,7 +20,7 @@ export function consoleErrors(type) {
       break;
     case "newNameExists":
       console.log(
-        "\u001b[41mOperation failed\u001b[0m \u001b[31mNew name exists\u001b[0m"
+        "\u001b[41mOperation failed\u001b[0m \u001b[31mNew filename exists\u001b[0m"
       );
       break;
     case "input":

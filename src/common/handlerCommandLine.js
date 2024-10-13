@@ -3,6 +3,7 @@ import { BasicOperations } from "../fs/basicOperations.js";
 import { navigation } from "../fs/navigation.js";
 import { handlerSystemInfoOperations } from "../os/handlerSystemInfoOperations.js";
 import { calculateHash } from "../hash/calculateHash.js";
+import { compress } from "../compress/compressOperations.js";
 
 export const handlerCommandLine = async (line, rl) => {
   const handlerClose = () => {
@@ -44,6 +45,12 @@ export const handlerCommandLine = async (line, rl) => {
       break;
     case "hash":
       await calculateHash(argWithSpace);
+      break;
+    case "compress":
+      await compress(argWithSpace);
+      break;
+    case "decompress":
+      await compress(argWithSpace, { reverse: true });
       break;
     case ".exit":
       handlerClose();
