@@ -2,6 +2,7 @@ import { consoleErrors } from "../errors/errors.js";
 import { BasicOperations } from "../fs/basicOperations.js";
 import { navigation } from "../fs/navigation.js";
 import { handlerSystemInfoOperations } from "../os/handlerSystemInfoOperations.js";
+import { calculateHash } from "../hash/calculateHash.js";
 
 export const handlerCommandLine = async (line, rl) => {
   const handlerClose = () => {
@@ -40,6 +41,9 @@ export const handlerCommandLine = async (line, rl) => {
       break;
     case "os":
       handlerSystemInfoOperations(arg);
+      break;
+    case "hash":
+      await calculateHash(argWithSpace);
       break;
     case ".exit":
       handlerClose();
