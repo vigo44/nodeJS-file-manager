@@ -1,6 +1,7 @@
 import { consoleErrors } from "../errors/errors.js";
 import { BasicOperations } from "../fs/basicOperations.js";
 import { navigation } from "../fs/navigation.js";
+import { handlerSystemInfoOperations } from "../os/handlerSystemInfoOperations.js";
 
 export const handlerCommandLine = async (line, rl) => {
   const handlerClose = () => {
@@ -36,6 +37,9 @@ export const handlerCommandLine = async (line, rl) => {
       break;
     case "rm":
       await basicOperations.deleteFile(argWithSpace);
+      break;
+    case "os":
+      handlerSystemInfoOperations(arg);
       break;
     case ".exit":
       handlerClose();
