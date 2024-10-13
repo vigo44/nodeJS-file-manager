@@ -1,0 +1,25 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "nodejs-file-manager",
+  "type": "module",
+  "engines": {
+    "node": ">=22.9.0"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vigo44/nodeJS-file-manager.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Evgeniy Kashtanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vigo44/nodeJS-file-manager/issues"
+  },
+  "homepage": "https://github.com/vigo44/nodeJS-file-manager#readme"
+}
